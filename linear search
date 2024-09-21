@@ -1,0 +1,22 @@
+//linear search
+#include<iostream>
+using namespace std;
+bool linear(int,int*,int);
+int main()
+{
+cout<<"what's up\nEnter the element you want"<<endl;int i;cin>>i;
+int arr[]={0,-1,2,5,9,6,3,7};
+bool found=linear(sizeof(arr),arr,i);
+if(found)cout<<" was found"<<endl;
+else cout<<"element not found"<<endl;
+return 0;
+}
+bool linear(int size,int arr[],int key)
+{
+for(int i=0;i<=size;i++)
+{
+if(arr[i]==key)
+{cout<<"element "<<key<<" on position "<<i;return 1;}
+}
+return 0;
+}
