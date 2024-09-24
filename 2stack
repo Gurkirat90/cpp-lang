@@ -1,0 +1,66 @@
+//implementaion
+#include<iostream>
+using namespace std;
+class twostack
+{
+public:
+int top1,top2;
+int *arr;
+int size;
+twostack(int s)
+{
+this -> size = s;
+arr = new int[s];
+top1=-1;
+top2=s;
+}
+void push1(int element)
+{if(top2-top1>1)
+{
+top1++;
+arr[top1]=element;}
+else cout<<"stack overflow"<<endl;
+}
+void push2(int element)
+{if(top2-top1>1)
+{
+top2--;
+arr[top2]=element;}
+else cout<<"stack overflow"<<endl;
+}
+void pop1()
+{
+if(top1>=0)top1--;
+else cout<<"stack underflow"<<endl;
+}
+void pop2()
+{
+if(top2<=size)top2++;
+else cout<<"stack overflow"<<endl;
+}
+int peek1()
+{
+if(top1>=0)return arr[top1];
+else cout<<"stack is  empty"<<endl;return -1;
+}
+int peek2()
+{
+if(top2<=size)return arr[top2];
+else cout<<"stack is  empty"<<endl;return -1;
+}
+};
+int main()
+{
+twostack st(5);
+st.push1(0);
+st.push1(1);
+st.push1(2);
+st.push2(4);
+st.pop1();
+st.push2(3);
+st.pop2();
+cout<<st.peek2()<<endl;
+cout<<st.peek1()<<endl;
+
+return 0;
+}
