@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+
+void transposeMatrix(){
+    int m,n,i,j;
+    int arr[100][100];
+    cout << "Enter number of rows: ";
+    cin >> m;
+    cout << "Enter number of columns: ";
+    cin >> n;
+    for(i = 0; i < m; i++){
+        for(j = 0; j < n; j++){
+            cout << "Enter value at " << i << " row and " << j << " column: ";
+            cin >> arr[i][j];
+        }
+    }
+    int cnt = 0;
+    for(i = 0; i < m; i++){
+        for(j = 0; j < n; j++){
+            if(arr[i][j] != 0){
+                cnt++;
+            }
+        }
+    }
+    int k = 1;
+    int trip[cnt+1][3];
+    trip[0][0] = m;
+    trip[0][1] = n;
+    trip[0][2] = cnt;
+    for(i = 0; i < m; i++){
+        for(j = 0; j < n; j++){
+            if(arr[i][j] != 0){
+                trip[k][0] = i;
+                trip[k][1] = j;
+                trip[k][2] = arr[i][j];
+                k++;
+            }
+        }
+    }
+    cout << "Sparse Matrix in triplet form is: " << endl;
+    for(i = 0; i < cnt + 1; i++){
+        for(j = 0; j < 3; j++){
+            cout << trip[i][j] << " ";
+        }
+        cout << endl;
+    }
+    int l = 1;
+    int trans[cnt+1][3];
+    trans[0][0] = n;
+    trans[0][1] = m;
+    trans[0][2] = cnt;
+    for(i = 0; i < n; i++){
+        for(j = 1; j < cnt + 1; j++){
+            if(trip[j][1] == i)
+{
+                trans[l][0] = trip[j][1];
+                trans[l][1] = trip[j][0];
+                trans[l][2] = trip[j][2];
+                l++;
+            }
+        }
+    }
+    cout << "Transpose of sparse matrix is: " << endl;
+    for(i = 0; i < cnt + 1; i++){
+        for(j = 0; j < 3; j++)
+        {
+            cout << trans[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
