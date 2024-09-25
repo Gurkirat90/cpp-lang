@@ -1,0 +1,79 @@
+//funtions conataing  code for deletion of elements at different positions
+//.==->
+
+//head
+node* delhead(node* head)
+{
+if(head==NULL)return head;
+node* temp =head; //assign temp to head
+head = head->next; //move head to next
+delete head;// or free(head);
+return head;
+}
+
+//tail or end
+node* delend(node* head)
+{
+if(head==NULL||head->next==NULL)return NULL;
+node* temp =head; //assign temp to head
+while(temp->next->next!=NULL)
+{
+temp =temp->next;//temp is  now around 2nd last element
+}
+free(temp->next);//free the last position
+temp->next=nullptr;//assign that last posion null
+return head;
+}
+
+//kth element
+node* delk(node* head,int k)
+{
+if(head==NULL)return head;
+if(k==1)
+{
+node* temp =head; //assign temp to head
+head = head->next; //move head to next
+delete head;// or free(head);
+}
+
+int cnt=0;
+node* temp =head; //assign temp to head
+node* prev =NULL;
+while(temp!= NULL)
+{
+++cnt;
+if(cnt==k)
+{
+prev->next=prev->next->next;
+free(temp);
+break;
+}
+prev = temp;
+temp = temp->next;
+}
+}
+
+//specific element
+node* dele(node* head,int e)
+{
+if(head==NULL)return head;
+if(head->data==e)
+{
+node* temp =head; //assign temp to head
+head = head->next; //move head to next
+delete head;// or free(head);
+}
+node* temp =head; //assign temp to head
+node* prev =NULL;
+while(temp!= NULL)
+{
+if(temp->data==e)
+{
+prev->next=prev->next->next;
+free(temp);
+break;
+}
+prev = temp;
+temp = temp->next;
+}
+}
